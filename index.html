@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jorge Ruiz — Developer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0c0e14;
+    --bg2:       #111520;
+    --bg3:       #161b27;
+    --accent:    #4f8ef7;
+    --accent2:   #7b5cf0;
+    --green:     #22d3a5;
+    --text:      #e2e8f4;
+    --muted:     #6b7a9a;
+    --border:    #1e2638;
+    --card:      #131928;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(12, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem; font-weight: 500;
+    color: var(--accent);
+  }
+  .nav-logo span { color: var(--text); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: .875rem; font-weight: 500; letter-spacing: .03em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2.5rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .8rem; color: var(--accent);
+    letter-spacing: .15em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero-eyebrow::before { content: '> '; }
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700; line-height: 1.08;
+    letter-spacing: -.02em;
+    margin-bottom: .75rem;
+  }
+  h1 .highlight {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-role {
+    font-size: 1.1rem; color: var(--muted); margin-bottom: 1.5rem;
+  }
+  .hero-desc {
+    color: #8fa0bf; font-size: .95rem; line-height: 1.75;
+    margin-bottom: 2rem; max-width: 480px;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    padding: .7rem 1.6rem; border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .875rem; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: all .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none;
+  }
+  .btn-primary:hover { background: #3a7ae0; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* hero visual */
+  .hero-visual {
+    position: relative; display: flex; justify-content: center; align-items: center;
+  }
+  .code-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem; line-height: 1.8;
+    width: 100%; max-width: 420px;
+    position: relative; overflow: hidden;
+  }
+  .code-card::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(79,142,247,.15), transparent 70%);
+    border-radius: 50%;
+  }
+  .code-topbar {
+    display: flex; gap: .45rem; margin-bottom: 1rem;
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .c-key { color: #7b5cf0; }
+  .c-fn  { color: #4f8ef7; }
+  .c-str { color: #22d3a5; }
+  .c-cm  { color: var(--muted); }
+  .c-var { color: #f9b859; }
+  .c-bool{ color: #ff7eb6; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 5rem 2.5rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem; color: var(--accent);
+    letter-spacing: .15em; text-transform: uppercase;
+    margin-bottom: .5rem;
+  }
+  .section-label::before { content: '// '; }
+  h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700; letter-spacing: -.02em;
+    margin-bottom: 3rem;
+  }
+  .divider {
+    height: 1px; background: var(--border);
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 4rem; align-items: start;
+  }
+  .about-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.8rem;
+  }
+  .about-name { font-size: 1.3rem; font-weight: 700; margin-bottom: .25rem; }
+  .about-title { color: var(--accent); font-size: .875rem; margin-bottom: 1rem; font-weight: 500; }
+  .about-meta { list-style: none; }
+  .about-meta li {
+    display: flex; align-items: center; gap: .6rem;
+    padding: .5rem 0; border-bottom: 1px solid var(--border);
+    font-size: .85rem; color: var(--muted);
+  }
+  .about-meta li:last-child { border-bottom: none; }
+  .about-meta li span:first-child { font-size: 1rem; }
+  .about-meta a { color: var(--accent); text-decoration: none; }
+  .about-text p { color: #8fa0bf; line-height: 1.8; margin-bottom: 1rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .tag {
+    background: rgba(79,142,247,.1); color: var(--accent);
+    border: 1px solid rgba(79,142,247,.2);
+    padding: .3rem .75rem; border-radius: 99px;
+    font-size: .78rem; font-weight: 500;
+  }
+  .tag.purple { background: rgba(123,92,240,.1); color: #a78bfa; border-color: rgba(123,92,240,.2); }
+  .tag.green  { background: rgba(34,211,165,.1); color: var(--green); border-color: rgba(34,211,165,.2); }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--bg); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-group {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    transition: border-color .2s;
+  }
+  .skill-group:hover { border-color: rgba(79,142,247,.35); }
+  .skill-group-title {
+    font-size: .7rem; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--muted); margin-bottom: 1rem; font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .pill {
+    background: var(--bg3); color: var(--text);
+    border: 1px solid var(--border);
+    padding: .3rem .7rem; border-radius: 6px;
+    font-size: .8rem; font-weight: 500;
+    transition: all .15s;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── PROJECTS ─── */
+  #projects { background: var(--bg2); }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .2s, border-color .2s;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: rgba(79,142,247,.35); }
+  .project-header {
+    padding: 1.5rem 1.5rem 0;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem;
+  }
+  .project-icon {
+    width: 46px; height: 46px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .project-badges { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem; padding: .2rem .55rem;
+    border-radius: 5px; border: 1px solid;
+    white-space: nowrap;
+  }
+  .badge-blue  { color: var(--accent); border-color: rgba(79,142,247,.3); background: rgba(79,142,247,.08); }
+  .badge-green { color: var(--green);  border-color: rgba(34,211,165,.3); background: rgba(34,211,165,.08); }
+  .badge-purple{ color: #a78bfa; border-color: rgba(123,92,240,.3); background: rgba(123,92,240,.08); }
+  .badge-orange{ color: #fb923c; border-color: rgba(251,146,60,.3); background: rgba(251,146,60,.08); }
+  .project-body { padding: 1.25rem 1.5rem; flex: 1; }
+  .project-name { font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }
+  .project-desc { color: #8fa0bf; font-size: .875rem; line-height: 1.7; margin-bottom: 1rem; }
+  .project-features { list-style: none; }
+  .project-features li {
+    color: var(--muted); font-size: .82rem; padding: .2rem 0;
+    display: flex; align-items: baseline; gap: .5rem;
+  }
+  .project-features li::before { content: '→'; color: var(--accent); font-size: .7rem; flex-shrink: 0; }
+  .project-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex; gap: .75rem; flex-wrap: wrap;
+  }
+  .repo-link {
+    display: inline-flex; align-items: center; gap: .4rem;
+    color: var(--muted); text-decoration: none; font-size: .8rem;
+    font-family: 'JetBrains Mono', monospace;
+    transition: color .2s;
+  }
+  .repo-link:hover { color: var(--accent); }
+  .repo-link svg { width: 14px; height: 14px; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--bg); }
+  .contact-inner {
+    max-width: 680px; margin: 0 auto; text-align: center;
+  }
+  .contact-inner .section-label { justify-content: center; display: flex; }
+  .contact-inner h2 { margin-bottom: 1rem; }
+  .contact-sub {
+    color: var(--muted); font-size: .95rem; margin-bottom: 2.5rem;
+  }
+  .contact-cards {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .contact-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.5rem;
+    display: flex; align-items: center; gap: .75rem;
+    text-decoration: none; color: var(--text);
+    font-size: .875rem; transition: all .2s; min-width: 200px;
+  }
+  .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .contact-item .ci-icon { font-size: 1.3rem; }
+  .contact-item .ci-label { font-size: .7rem; color: var(--muted); display: block; }
+  .contact-item .ci-val  { font-weight: 600; font-size: .88rem; }
+  .github-banner {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none; color: var(--text);
+    transition: border-color .2s;
+    margin-top: 1rem;
+  }
+  .github-banner:hover { border-color: var(--accent); }
+  .github-banner-icon { font-size: 2rem; }
+  .github-banner-text { text-align: left; }
+  .github-banner-text strong { display: block; font-size: 1rem; }
+  .github-banner-text span { color: var(--muted); font-size: .83rem; font-family: 'JetBrains Mono', monospace; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    text-align: center; padding: 1.5rem;
+    color: var(--muted); font-size: .8rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ─── AMBIENT BG ─── */
+  .glow {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    filter: blur(100px); opacity: .12;
+  }
+  .glow-1 { width: 500px; height: 500px; background: var(--accent); top: -150px; right: -100px; }
+  .glow-2 { width: 350px; height: 350px; background: var(--accent2); bottom: 0; left: -100px; }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s, transform .55s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    #hero { padding: 5rem 1.25rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    h2 { margin-bottom: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">jorge<span>.dev</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="hero-grid">
+    <div>
+      <p class="hero-eyebrow">Disponible para proyectos</p>
+      <h1>Jorge<br/><span class="highlight">Edu Ruiz</span></h1>
+      <p class="hero-role">Software Developer · Backend & Fullstack</p>
+      <p class="hero-desc">
+        Desarrollador apasionado por construir aplicaciones robustas con Java &amp; Spring Boot.
+        Manejo el ciclo completo: desde la base de datos hasta el frontend, incluyendo despliegue en la nube.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">Ver proyectos</a>
+        <a href="#contact"  class="btn btn-ghost">Contactarme</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="code-card">
+        <div class="code-topbar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+        </div>
+        <div>
+          <span class="c-key">@RestController</span><br/>
+          <span class="c-key">@RequestMapping</span>(<span class="c-str">"/api"</span>)<br/>
+          <span class="c-key">public class</span> <span class="c-fn">JorgeRuiz</span> {<br/>
+          <br/>
+          &nbsp;&nbsp;<span class="c-cm">// Skills</span><br/>
+          &nbsp;&nbsp;<span class="c-key">private</span> <span class="c-var">stack</span> = [<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"Java"</span>, <span class="c-str">"Spring Boot"</span>,<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"React"</span>, <span class="c-str">"Angular"</span>,<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"MySQL"</span>, <span class="c-str">"Docker"</span><br/>
+          &nbsp;&nbsp;];<br/>
+          <br/>
+          &nbsp;&nbsp;<span class="c-key">private</span> <span class="c-var">disponible</span> = <span class="c-bool">true</span>;<br/>
+          <br/>
+          &nbsp;&nbsp;<span class="c-key">@GetMapping</span>(<span class="c-str">"/hire"</span>)<br/>
+          &nbsp;&nbsp;<span class="c-fn">contratar</span>() → <span class="c-str">"¡Hablemos!"</span><br/>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label">Sobre mí</p>
+    <h2>Quién soy</h2>
+    <div class="about-grid reveal">
+      <div class="about-card">
+        <div class="about-name">Jorge Edu Evaristo Ruiz Tapia</div>
+        <div class="about-title">Backend Developer · Zegel IPAE</div>
+        <ul class="about-meta">
+          <li><span>📍</span><span>Lima, Perú</span></li>
+          <li><span>📧</span><span><a href="mailto:jorgeruiztapia0218@gmail.com">jorgeruiztapia0218@gmail.com</a></span></li>
+          <li><span>📱</span><span>936 337 746</span></li>
+          <li><span>🎂</span><span>18 / 02 / 2006</span></li>
+          <li><span>🎓</span><span>Desarrollo de Software · abr 2024 – presente</span></li>
+          <li><span>🐙</span><span><a href="https://github.com/JorgeRuiz20" target="_blank">github.com/JorgeRuiz20</a></span></li>
+        </ul>
+      </div>
+      <div class="about-text">
+        <p>
+          Soy estudiante de Desarrollo de Software en Instituto Zegel (Lima) con enfoque en backend usando
+          <strong>Java y Spring Boot</strong>. Me apasiona construir sistemas limpios, escalables y bien documentados,
+          aplicando buenas prácticas como arquitectura MVC y APIs RESTful.
+        </p>
+        <p>
+          Tengo experiencia práctica con bases de datos relacionales (<strong>MySQL, SQL Server, Oracle</strong>),
+          despliegue en la nube con <strong>Railway y Render</strong>, contenedores con <strong>Docker</strong>,
+          control de versiones con <strong>Git y Git Flow</strong> para trabajo colaborativo,
+          y prueba de APIs con <strong>Postman</strong>.
+        </p>
+        <p>
+          En el frontend manejo <strong>React, Angular</strong> y tecnologías como HTML, CSS, Tailwind, Bootstrap
+          y TypeScript. También desarrollo apps móviles con <strong>Android Studio y Kotlin</strong>.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Backend Java</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag purple">React</span>
+          <span class="tag purple">Angular</span>
+          <span class="tag green">Docker</span>
+          <span class="tag green">Cloud Deploy</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag purple">Android</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">Tecnologías</p>
+    <h2>Stack técnico</h2>
+    <div class="skills-grid reveal">
+
+      <div class="skill-group">
+        <div class="skill-group-title">☕ Backend</div>
+        <div class="skill-pills">
+          <span class="pill">Java</span>
+          <span class="pill">Spring Boot</span>
+          <span class="pill">Spring MVC</span>
+          <span class="pill">Spring Tools</span>
+          <span class="pill">REST APIs</span>
+          <span class="pill">JPA / Hibernate</span>
+          <span class="pill">Maven</span>
+          <span class="pill">Python</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">⚡ Frontend</div>
+        <div class="skill-pills">
+          <span class="pill">React</span>
+          <span class="pill">Angular</span>
+          <span class="pill">TypeScript</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">HTML5</span>
+          <span class="pill">CSS3</span>
+          <span class="pill">Tailwind CSS</span>
+          <span class="pill">Bootstrap</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🗄️ Bases de datos</div>
+        <div class="skill-pills">
+          <span class="pill">MySQL</span>
+          <span class="pill">SQL Server</span>
+          <span class="pill">Oracle</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">📱 Mobile</div>
+        <div class="skill-pills">
+          <span class="pill">Kotlin</span>
+          <span class="pill">Android Studio</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">☁️ DevOps &amp; Cloud</div>
+        <div class="skill-pills">
+          <span class="pill">Docker</span>
+          <span class="pill">Railway</span>
+          <span class="pill">Render</span>
+          <span class="pill">Git</span>
+          <span class="pill">GitHub</span>
+          <span class="pill">Git Flow</span>
+          <span class="pill">Postman</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🧠 Metodologías</div>
+        <div class="skill-pills">
+          <span class="pill">Scrum / Agile</span>
+          <span class="pill">Arquitectura MVC</span>
+          <span class="pill">Clean Architecture</span>
+          <span class="pill">MVVM</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🧪 Testing</div>
+        <div class="skill-pills">
+          <span class="pill">JUnit</span>
+          <span class="pill">Mockito</span>
+          <span class="pill">AAA (Arrange-Act-Assert)</span>
+          <span class="pill">Unit Testing</span>
+          <span class="pill">Integration Tests</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">Proyectos</p>
+    <h2>Lo que he construido</h2>
+    <div class="projects-grid">
+
+      <!-- MOTOSTOCK MOBILE -->
+      <div class="project-card reveal" style="grid-column: 1 / -1;">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(34,211,165,.12);">🏍️</div>
+          <div class="project-badges">
+            <span class="badge badge-green">Kotlin</span>
+            <span class="badge badge-green">Android</span>
+            <span class="badge badge-blue">Firebase Auth</span>
+            <span class="badge badge-blue">Firestore</span>
+            <span class="badge badge-blue">FCM</span>
+            <span class="badge badge-purple">Clean Architecture</span>
+            <span class="badge badge-purple">Hilt</span>
+            <span class="badge badge-orange">Room</span>
+            <span class="badge badge-orange">Retrofit</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">MotoStock — App Android</div>
+          <p class="project-desc">
+            App Android nativa para la gestión completa de un taller de motos. Permite registrar el
+            ingreso y salida de vehículos por placa, llevar el historial de servicios, administrar el
+            inventario de repuestos y gestionar citas con un flujo de estados definido. Implementa tres
+            roles de usuario con vistas y permisos diferenciados: CLIENTE, TRABAJADOR y ADMIN.
+          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 2rem;">
+            <ul class="project-features">
+              <li>Autenticación con Firebase Auth: Email/Contraseña y Google Sign-In</li>
+              <li>Sistema de roles con acceso diferenciado por pantalla y acción</li>
+              <li>Push notifications en tiempo real con Firebase Cloud Messaging (FCM)</li>
+              <li>Persistencia local offline con Room + sincronización a Firebase Firestore</li>
+              <li>Patrón MVVM con ViewModels, LiveData y StateFlow</li>
+            </ul>
+            <ul class="project-features">
+              <li>Inyección de dependencias con Hilt (DI)</li>
+              <li>Consulta de datos de vehículo por placa vía Retrofit a API externa</li>
+              <li>Máquina de estados de citas: PENDIENTE → ACEPTADA / RECHAZADA → EN_PROCESO → FINALIZADO</li>
+              <li>Tests unitarios con JUnit + Mockito aplicando el patrón AAA (Arrange, Act, Assert)</li>
+              <li>Arquitectura por capas: presentation / domain / data / di</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-footer">
+          <a class="repo-link" href="https://github.com/JorgeRuiz20/AppMotoStock" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            AppMotoStock
+          </a>
+        </div>
+      </div>
+
+      <!-- CARWASH FRONTEND -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(79,142,247,.12);">🚗</div>
+          <div class="project-badges">
+            <span class="badge badge-blue">React</span>
+            <span class="badge badge-blue">Vite</span>
+            <span class="badge badge-green">JavaScript</span>
+            <span class="badge badge-purple">Frontend</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Carwash H&amp;R — Frontend</div>
+          <p class="project-desc">
+            SPA para el sistema de gestión de un lavadero de autos. Desarrollada con React y Vite,
+            consume la API REST del backend Spring Boot para mostrar en tiempo real el estado de los
+            servicios, el flujo de caja y el inventario de insumos.
+          </p>
+          <ul class="project-features">
+            <li>Registro de clientes, vehículos y tipos de lavado</li>
+            <li>Control de caja diaria: ingresos, egresos y arqueo</li>
+            <li>Inventario de insumos con alertas de stock mínimo</li>
+            <li>Panel de operaciones del equipo de trabajo</li>
+            <li>Diseño responsive optimizado para uso en mostrador</li>
+          </ul>
+        </div>
+        <div class="project-footer">
+          <a class="repo-link" href="https://github.com/JorgeRuiz20/FrontendCarwash" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            FrontendCarwash
+          </a>
+        </div>
+      </div>
+
+      <!-- CARWASH BACKEND -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(34,211,165,.1);">⚙️</div>
+          <div class="project-badges">
+            <span class="badge badge-orange">Java</span>
+            <span class="badge badge-orange">Spring Boot</span>
+            <span class="badge badge-green">MySQL</span>
+            <span class="badge badge-blue">REST API</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Carwash H&amp;R — Backend</div>
+          <p class="project-desc">
+            API REST construida con Spring Boot y arquitectura MVC que gestiona toda la lógica
+            de negocio del lavadero: desde el registro de servicios hasta los reportes diarios.
+            Desplegada en la nube usando Railway/Render con Docker.
+          </p>
+          <ul class="project-features">
+            <li>Endpoints CRUD para servicios, clientes y empleados</li>
+            <li>Módulo de caja: registro de pagos, arqueo y reportes diarios</li>
+            <li>Control de inventario y consumo de insumos por servicio</li>
+            <li>Organización y supervisión de actividades del equipo</li>
+            <li>Despliegue containerizado con Docker en Railway / Render</li>
+          </ul>
+        </div>
+        <div class="project-footer">
+          <a class="repo-link" href="https://github.com/JorgeRuiz20/BackendCarwash" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            BackendCarwash
+          </a>
+        </div>
+      </div>
+
+      <!-- ROBOTECH FRONTEND -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(123,92,240,.12);">🤖</div>
+          <div class="project-badges">
+            <span class="badge badge-purple">Angular</span>
+            <span class="badge badge-blue">TypeScript</span>
+            <span class="badge badge-green">Tailwind</span>
+            <span class="badge badge-purple">Frontend</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Robotech — Frontend</div>
+          <p class="project-desc">
+            Interfaz web para una empresa de robótica y tecnología. Desarrollada con Angular y
+            TypeScript, ofrece un panel de administración para gestionar el catálogo de productos,
+            clientes y operaciones comerciales conectándose a la API REST del backend.
+          </p>
+          <ul class="project-features">
+            <li>Catálogo de productos y componentes de robótica con filtros</li>
+            <li>Panel de administración de clientes y pedidos</li>
+            <li>Formularios tipados con validación reactiva (Angular Forms)</li>
+            <li>Consumo de la API REST con HttpClient e interceptores</li>
+            <li>UI moderna y responsiva con Tailwind CSS</li>
+          </ul>
+        </div>
+        <div class="project-footer">
+          <a class="repo-link" href="https://github.com/JorgeRuiz20/FrontendRobotech" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            FrontendRobotech
+          </a>
+        </div>
+      </div>
+
+      <!-- ROBOTECH BACKEND -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(251,146,60,.1);">🔧</div>
+          <div class="project-badges">
+            <span class="badge badge-orange">Java</span>
+            <span class="badge badge-orange">Spring Boot</span>
+            <span class="badge badge-green">MySQL</span>
+            <span class="badge badge-blue">REST API</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Robotech — Backend</div>
+          <p class="project-desc">
+            API REST del sistema de gestión para una empresa de robótica. Construida con Spring Boot
+            y JPA/Hibernate, expone endpoints para el control de inventario, ventas y clientes,
+            con base de datos MySQL y despliegue en la nube.
+          </p>
+          <ul class="project-features">
+            <li>Gestión de inventario de componentes y kits de robótica</li>
+            <li>Módulo de ventas, cotizaciones y seguimiento de pedidos</li>
+            <li>Consultas optimizadas con JPA/Hibernate y MySQL</li>
+            <li>Tests unitarios con JUnit + Mockito (patrón AAA)</li>
+            <li>Despliegue en la nube con Docker + Railway / Render</li>
+          </ul>
+        </div>
+        <div class="project-footer">
+          <a class="repo-link" href="https://github.com/JorgeRuiz20/BackendRobotech" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            BackendRobotech
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner reveal">
+      <p class="section-label">Contacto</p>
+      <h2>¿Trabajamos juntos?</h2>
+      <p class="contact-sub">
+        Estoy abierto a prácticas profesionales, proyectos freelance y oportunidades de trabajo.
+        ¡Escríbeme y hablamos!
+      </p>
+      <div class="contact-cards">
+        <a href="mailto:jorgeruiztapia0218@gmail.com" class="contact-item">
+          <span class="ci-icon">📧</span>
+          <div>
+            <span class="ci-label">Email</span>
+            <span class="ci-val">jorgeruiztapia0218@gmail.com</span>
+          </div>
+        </a>
+        <a href="tel:+51936337746" class="contact-item">
+          <span class="ci-icon">📱</span>
+          <div>
+            <span class="ci-label">Teléfono</span>
+            <span class="ci-val">+51 936 337 746</span>
+          </div>
+        </a>
+      </div>
+      <a href="https://github.com/JorgeRuiz20" target="_blank" class="github-banner">
+        <span class="github-banner-icon">🐙</span>
+        <div class="github-banner-text">
+          <strong>Ver todos mis repositorios</strong>
+          <span>github.com/JorgeRuiz20</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Construido por <strong>Jorge Edu Ruiz Tapia</strong> · Lima, Perú · 2026</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
