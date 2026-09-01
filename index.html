@@ -79,6 +79,38 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opa
 #lightbox .lb-nav:hover{background:rgba(91,140,255,.28);border-color:rgba(91,140,255,.5)}
 #lightbox .lb-prev{left:-56px}#lightbox .lb-next{right:-56px}
 @media(max-width:760px){#lightbox .lb-prev{left:6px}#lightbox .lb-next{right:6px}#lightbox .lb-close{top:6px;right:6px}#lightbox .lb-nav{width:38px;height:38px}}
+
+/* Project Action & Live Demo Button */
+.project-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;width:100%}
+.btn-live{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;background:linear-gradient(135deg,#059669,#10b981);color:#fff!important;font-weight:700;font-size:.85rem;box-shadow:0 10px 24px rgba(16,185,129,.28);border:1px solid rgba(255,255,255,.2);transition:all .25s var(--ease);text-decoration:none}
+.btn-live:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(16,185,129,.42);filter:brightness(1.08)}
+.btn-live .live-pulse{width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35);animation:liveDot 1.8s infinite}
+@keyframes liveDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.repo-links-group{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.repo-badge-link{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:#c5d4ed;font-size:.78rem;font-weight:600;transition:all .2s ease}
+.repo-badge-link:hover{background:rgba(91,140,255,.1);border-color:rgba(91,140,255,.35);color:#fff;transform:translateY(-1px)}
+.repo-badge-link span{color:var(--blue)}
+.live-badge{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:3px 8px;border-radius:999px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#34d399;margin-left:auto}
+.live-badge::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399}
+
+/* Credentials Box Styling */
+.demo-creds-container{margin-top:18px;padding:14px 16px;border-radius:14px;background:rgba(13,20,34,.75);border:1px solid rgba(91,140,255,.2);backdrop-filter:blur(8px)}
+.demo-creds-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.demo-creds-title{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;color:#72dbb4;letter-spacing:.05em;text-transform:uppercase}
+.demo-creds-badge{font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:3px 8px;border-radius:999px;background:rgba(44,230,174,.1);border:1px solid rgba(44,230,174,.25);color:#2ce6ae}
+.demo-creds-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.demo-cred-card{padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.demo-role-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;color:var(--blue);margin-bottom:6px;text-transform:uppercase}
+.cred-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#a8b8d4;background:rgba(0,0,0,.25);padding:4px 8px;border-radius:6px;border:1px solid rgba(255,255,255,.04)}
+.cred-label{color:#65748f;font-size:.62rem;text-transform:uppercase}
+.cred-val{color:#fff;font-weight:600;user-select:all;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-copy{background:rgba(91,140,255,.12);border:1px solid rgba(91,140,255,.25);color:#9cbaff;cursor:pointer;padding:2px 7px;border-radius:5px;font-size:.62rem;font-family:'JetBrains Mono',monospace;transition:all .2s;flex-shrink:0}
+.btn-copy:hover{background:var(--blue);color:#fff}
+.btn-copy.copied{background:#10b981!important;color:#fff!important;border-color:#10b981!important}
+.demo-creds-note{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#72819c;display:flex;align-items:center;gap:6px}
+.demo-info-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:rgba(91,140,255,.07);border:1px solid rgba(91,140,255,.18);color:#a3badf;font-size:.76rem;margin-top:14px}
+.demo-info-pill strong{color:#eaf1ff}
+@media(max-width:760px){.demo-creds-grid{grid-template-columns:1fr}.project-actions{flex-direction:column;align-items:stretch}.btn-live{justify-content:center}.repo-links-group{justify-content:space-between}}
 </style></head><body><div id="progress"></div><div id="ambient"><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div></div>
 <header class="nav" id="nav"><div class="nav-inner wrap"><a href="#hero" class="logo"><span class="accent">jorge</span><span class="muted">.dev</span></a><ul class="nav-links"><li><a href="#about">Sobre mí</a></li><li><a href="#specialties">Especialidad</a></li><li><a href="#skills">Stack</a></li><li><a href="#experience">Experiencia</a></li><li><a href="#projects">Proyectos</a></li><li><a href="#contact" class="nav-cta">Hablemos</a></li></ul></div></header>
 <main>
@@ -92,59 +124,221 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opa
 <section id="projects" style="padding-top:70px"><div class="wrap"><p class="section-kicker">Proyectos</p><h2 class="section-title reveal">No solo muestro código.<br><span style="color:#9fb6e8">Muestro el problema que resolví.</span></h2><p class="section-copy reveal">Cada proyecto nació de una necesidad concreta. Presento el contexto, la solución y las decisiones técnicas para que puedas entender no solo qué desarrollé, sino por qué lo desarrollé así.</p><div class="projects-grid case-grid">
 
 <article class="project-card reveal project-featured case-card" data-tilt>
-  <div class="project-top"><div class="project-index">01</div><div class="project-icon">⌁</div><div class="project-type">Mobile · Kotlin</div></div>
-  <div class="project-gallery phone-gallery" aria-label="Capturas del proyecto"><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="0" aria-label="Ver captura: MotoStock — Login"><span class="phone-notch"></span><img src="assets/projects/motostock/login.jpg" alt="MotoStock — Login" loading="lazy"></button><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="1" aria-label="Ver captura: MotoStock — Inicio"><span class="phone-notch"></span><img src="assets/projects/motostock/home.jpg" alt="MotoStock — Inicio" loading="lazy"></button><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="2" aria-label="Ver captura: MotoStock — Historial de atenciones"><span class="phone-notch"></span><img src="assets/projects/motostock/historial.jpg" alt="MotoStock — Historial de atenciones" loading="lazy"></button><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="3" aria-label="Ver captura: MotoStock — Citas pendientes"><span class="phone-notch"></span><img src="assets/projects/motostock/citas.jpg" alt="MotoStock — Citas pendientes" loading="lazy"></button></div>
-  <div class="project-main">
-    <div class="case-kicker">PROBLEMA → SOLUCIÓN</div>
-    <h3>MotoStock — Android</h3>
-    <p class="case-intro">Un taller de motos necesita controlar repuestos, servicios, vehículos y citas sin depender de procesos dispersos. La propuesta fue llevar esa operación a una aplicación Android centralizada, con información persistente, acceso por roles y capacidad de seguir trabajando con datos locales.</p>
-    <div class="case-split"><div><div class="mini-title">Qué construí</div><p>Una app nativa para gestionar inventario, historial de servicios por placa y agenda de citas, con autenticación y sincronización en la nube.</p></div><div><div class="mini-title">Cómo lo resolví</div><p>Separación por capas y responsabilidades con Clean Architecture, ViewModels/StateFlow, Room para persistencia local, Firestore para sincronización, Retrofit para integración externa y Hilt para inyección de dependencias.</p></div></div>
-    <div class="tech-row"><span class="tech-tag">Kotlin</span><span class="tech-tag">Jetpack Compose</span><span class="tech-tag">Clean Architecture</span><span class="tech-tag">MVVM / StateFlow</span><span class="tech-tag">Hilt</span><span class="tech-tag">Room</span><span class="tech-tag">Retrofit</span><span class="tech-tag">Firebase</span></div>
-    <ul class="project-list"><li>Roles CLIENTE / TRABAJADOR / ADMIN</li><li>Firebase Auth + Google Sign-In</li><li>FCM para notificaciones</li><li>Room + Firestore para persistencia y sincronización</li><li>Consulta de datos de vehículo vía API</li><li>Tests con JUnit + Mockito y patrón AAA</li></ul>
+  <div class="project-top">
+    <div class="project-index">01</div>
+    <div class="project-icon">⚡</div>
+    <div class="project-type">Full Stack · Spring Boot + React</div>
+    <span class="live-badge">Live Demo</span>
   </div>
-  <div class="project-footer"><a href="https://github.com/JorgeRuiz20/AppMotoStock" target="_blank" rel="noreferrer" class="repo-link"><span>↗</span> Ver repositorio <small>AppMotoStock</small></a></div>
+  <div class="project-gallery browser-gallery" aria-label="Capturas del proyecto"><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="0" aria-label="Ver captura: RoboTech — Panel administrador"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/panel-admin.jpg" alt="RoboTech — Panel administrador" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="1" aria-label="Ver captura: RoboTech — Panel del juez"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/panel-juez.jpg" alt="RoboTech — Panel del juez" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="2" aria-label="Ver captura: RoboTech — Bracket del torneo"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/bracket.jpg" alt="RoboTech — Bracket del torneo" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="3" aria-label="Ver captura: RoboTech — Panel del competidor"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/panel-competidor.jpg" alt="RoboTech — Panel del competidor" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="4" aria-label="Ver captura: RoboTech — Ranking en tiempo real"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/ranking.jpg" alt="RoboTech — Ranking en tiempo real" loading="lazy"></button></div>
+  <div class="project-main">
+    <div class="case-kicker">PLATAFORMA DE TORNEO & GESTIÓN INTEGRAL</div>
+    <h3>Robotech — Plataforma de Competencias y Torneo de Robótica</h3>
+    <p class="case-intro">Sistema web full stack diseñado para organizar y arbitrar torneos de robótica en tiempo real, combinando control de acceso por roles (Juez, Competidor, Admin), generación dinámica de brackets de eliminatorias, evaluación técnica en vivo con puntuación por criterios, ranking instantáneo y módulo comercial de inventario y cotizaciones.</p>
+    <div class="case-split">
+      <div><div class="mini-title">Qué construí</div><p>Un backend REST desacoplado para reglas de negocio, cómputo de puntajes y persistencia, junto a una SPA reactiva para competidores y jueces.</p></div>
+      <div><div class="mini-title">Cómo lo resolví</div><p>Spring Boot + JPA/Hibernate + MySQL en la nube (Render), seguridad granular por roles, y frontend dinámico con React + Vite + Axios y diseño responsivo.</p></div>
+    </div>
+    <div class="tech-row"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">JPA / Hibernate</span><span class="tech-tag">MySQL</span><span class="tech-tag">React</span><span class="tech-tag">Vite</span><span class="tech-tag">Axios</span><span class="tech-tag">React Router</span><span class="tech-tag">Render Cloud</span></div>
+    <ul class="project-list">
+      <li>Brackets interactivos y ranking en vivo</li>
+      <li>Panel de Juez con sistema de puntuación técnica</li>
+      <li>Panel de Competidor para registro y estado de robots</li>
+      <li>Gestión de inventario, kits de robótica y cotizaciones</li>
+      <li>Arquitectura REST segura y desplegada en la nube</li>
+      <li>Pruebas unitarias en backend con JUnit</li>
+    </ul>
+
+    <!-- Credentials Box for Robotech Demo -->
+    <div class="demo-creds-container">
+      <div class="demo-creds-header">
+        <span class="demo-creds-title">🔑 Credenciales de Prueba (Demo)</span>
+        <span class="demo-creds-badge">Prueba el Producto</span>
+      </div>
+      <div class="demo-creds-grid">
+        <div class="demo-cred-card">
+          <span class="demo-role-tag">👤 Rol Competidor</span>
+          <div class="cred-row">
+            <span class="cred-label">Email</span>
+            <span class="cred-val">comp1@robotech.com</span>
+            <button type="button" class="btn-copy" onclick="copyCred('comp1@robotech.com', this)" title="Copiar email">Copiar</button>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Pass</span>
+            <span class="cred-val">Comp123!</span>
+            <button type="button" class="btn-copy" onclick="copyCred('Comp123!', this)" title="Copiar contraseña">Copiar</button>
+          </div>
+        </div>
+        <div class="demo-cred-card">
+          <span class="demo-role-tag">⚖️ Rol Juez</span>
+          <div class="cred-row">
+            <span class="cred-label">Email</span>
+            <span class="cred-val">juez1@robotech.com</span>
+            <button type="button" class="btn-copy" onclick="copyCred('juez1@robotech.com', this)" title="Copiar email">Copiar</button>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Pass</span>
+            <span class="cred-val">Juez123!</span>
+            <button type="button" class="btn-copy" onclick="copyCred('Juez123!', this)" title="Copiar contraseña">Copiar</button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-creds-note">
+        <span>🔒</span>
+        <em>El acceso de Administrador se mantiene privado por políticas de seguridad.</em>
+      </div>
+    </div>
+  </div>
+  <div class="project-footer">
+    <div class="project-actions">
+      <a href="https://frontendrobotech.onrender.com" target="_blank" rel="noreferrer" class="btn-live">
+        <span class="live-pulse"></span> 🚀 Probar Demo en Vivo <span>↗</span>
+      </a>
+      <div class="repo-links-group">
+        <a href="https://github.com/JorgeRuiz20/BackendRobotech" target="_blank" rel="noreferrer" class="repo-badge-link">
+          <span>↗</span> Backend <small>BackendRobotech</small>
+        </a>
+        <a href="https://github.com/JorgeRuiz20/FrontendRobotech" target="_blank" rel="noreferrer" class="repo-badge-link">
+          <span>↗</span> Frontend <small>FrontendRobotech</small>
+        </a>
+      </div>
+    </div>
+  </div>
 </article>
 
 <article class="project-card reveal case-card" data-tilt>
-  <div class="project-top"><div class="project-index">02</div><div class="project-icon">◈</div><div class="project-type">Full Stack · Java + React</div></div>
+  <div class="project-top">
+    <div class="project-index">02</div>
+    <div class="project-icon">◈</div>
+    <div class="project-type">Full Stack · Java + React</div>
+    <span class="live-badge">Live Demo</span>
+  </div>
   <div class="project-gallery browser-gallery" aria-label="Capturas del proyecto"><button class="gshot browser-shot" type="button" data-gallery="carwash" data-index="0" aria-label="Ver captura: CarWash Pro — Panel del cliente"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/carwash/dashboard-cliente.jpg" alt="CarWash Pro — Panel del cliente" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="carwash" data-index="1" aria-label="Ver captura: CarWash Pro — Programa de fidelización"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/carwash/fidelizacion.jpg" alt="CarWash Pro — Programa de fidelización" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="carwash" data-index="2" aria-label="Ver captura: CarWash Pro — Dashboard administrador"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/carwash/admin-panel.jpg" alt="CarWash Pro — Dashboard administrador" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="carwash" data-index="3" aria-label="Ver captura: CarWash Pro — Panel de servicios"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/carwash/admin-servicios.jpg" alt="CarWash Pro — Panel de servicios" loading="lazy"></button></div>
   <div class="project-main">
     <div class="case-kicker">PROBLEMA → SOLUCIÓN</div>
-    <h3>Carwash H&amp;R — Gestión operativa</h3>
-    <p class="case-intro">La operación de un lavadero concentra clientes, vehículos, servicios, caja e inventario. A partir de esa problemática construí una solución dividida entre un backend REST y una interfaz web para digitalizar el flujo y centralizar la información del negocio.</p>
-    <div class="case-split"><div><div class="mini-title">Qué construí</div><p>Una API para la lógica de negocio y una SPA para consultar y operar los procesos desde una interfaz web.</p></div><div><div class="mini-title">Cómo lo resolví</div><p>Spring Boot + MySQL para el backend, Docker para empaquetado y despliegue, y React + Vite + Axios para consumir la API desde el frontend.</p></div></div>
-    <div class="tech-row"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">REST API</span><span class="tech-tag">MySQL</span><span class="tech-tag">Docker</span><span class="tech-tag">React</span><span class="tech-tag">Vite</span><span class="tech-tag">Axios</span></div>
-    <ul class="project-list"><li>Gestión de servicios, clientes y empleados</li><li>Caja diaria, pagos y arqueo</li><li>Inventario y control de insumos</li><li>Reportes y seguimiento operativo</li><li>Frontend responsive conectado a la API</li><li>Despliegue containerizado en la nube</li></ul>
+    <h3>Carwash H&amp;R — Gestión Operativa &amp; Fidelización</h3>
+    <p class="case-intro">La operación de un lavadero concentra clientes, vehículos, servicios, caja e inventario. A partir de esa problemática construí una solución dividida entre un backend REST y una interfaz web para digitalizar el flujo comercial, arqueo diario y fidelización de usuarios mediante puntos.</p>
+    <div class="case-split">
+      <div><div class="mini-title">Qué construí</div><p>Una API REST para la lógica de negocio y una SPA intuitiva para operar y consultar procesos desde una interfaz web moderna.</p></div>
+      <div><div class="mini-title">Cómo lo resolví</div><p>Spring Boot + MySQL para el backend, Docker para empaquetado y despliegue en Render, y React + Vite + Axios para la interacción frontend.</p></div>
+    </div>
+    <div class="tech-row"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">REST API</span><span class="tech-tag">MySQL</span><span class="tech-tag">Docker</span><span class="tech-tag">React</span><span class="tech-tag">Vite</span><span class="tech-tag">Axios</span><span class="tech-tag">Render</span></div>
+    <ul class="project-list">
+      <li>Gestión integral de servicios, clientes y empleados</li>
+      <li>Caja diaria, registro de pagos y arqueo</li>
+      <li>Sistema de fidelización por acumulación de puntos</li>
+      <li>Inventario y control de insumos en tiempo real</li>
+      <li>Frontend responsive conectado a la API REST</li>
+      <li>Despliegue containerizado en la nube</li>
+    </ul>
+
+    <div class="demo-info-pill">
+      <span>💡</span>
+      <span><strong>Demo disponible:</strong> Las credenciales de prueba están indicadas directamente en la pantalla de inicio de sesión de la aplicación.</span>
+    </div>
   </div>
-  <div class="project-footer repo-duo"><a href="https://github.com/JorgeRuiz20/BackendCarwash" target="_blank" rel="noreferrer" class="repo-link"><span>↗</span> Backend <small>BackendCarwash</small></a><a href="https://github.com/JorgeRuiz20/FrontendCarwash" target="_blank" rel="noreferrer" class="repo-link"><span>↗</span> Frontend <small>FrontendCarwash</small></a></div>
+  <div class="project-footer">
+    <div class="project-actions">
+      <a href="https://frontendcarwash.onrender.com" target="_blank" rel="noreferrer" class="btn-live">
+        <span class="live-pulse"></span> 🚀 Probar Demo en Vivo <span>↗</span>
+      </a>
+      <div class="repo-links-group">
+        <a href="https://github.com/JorgeRuiz20/BackendCarwash" target="_blank" rel="noreferrer" class="repo-badge-link">
+          <span>↗</span> Backend <small>BackendCarwash</small>
+        </a>
+        <a href="https://github.com/JorgeRuiz20/FrontendCarwash" target="_blank" rel="noreferrer" class="repo-badge-link">
+          <span>↗</span> Frontend <small>FrontendCarwash</small>
+        </a>
+      </div>
+    </div>
+  </div>
 </article>
 
 <article class="project-card reveal case-card" data-tilt>
-  <div class="project-top"><div class="project-index">03</div><div class="project-icon">◇</div><div class="project-type">Full Stack · Spring + React</div></div>
-  <div class="project-gallery browser-gallery" aria-label="Capturas del proyecto"><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="0" aria-label="Ver captura: RoboTech — Panel administrador"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/panel-admin.jpg" alt="RoboTech — Panel administrador" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="1" aria-label="Ver captura: RoboTech — Panel del juez"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/panel-juez.jpg" alt="RoboTech — Panel del juez" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="2" aria-label="Ver captura: RoboTech — Bracket del torneo"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/bracket.jpg" alt="RoboTech — Bracket del torneo" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="3" aria-label="Ver captura: RoboTech — Panel del competidor"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/panel-competidor.jpg" alt="RoboTech — Panel del competidor" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="robotech" data-index="4" aria-label="Ver captura: RoboTech — Ranking en tiempo real"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/robotech/ranking.jpg" alt="RoboTech — Ranking en tiempo real" loading="lazy"></button></div>
+  <div class="project-top">
+    <div class="project-index">03</div>
+    <div class="project-icon">⌁</div>
+    <div class="project-type">Mobile · Kotlin + Android</div>
+  </div>
+  <div class="project-gallery phone-gallery" aria-label="Capturas del proyecto"><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="0" aria-label="Ver captura: MotoStock — Login"><span class="phone-notch"></span><img src="assets/projects/motostock/login.jpg" alt="MotoStock — Login" loading="lazy"></button><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="1" aria-label="Ver captura: MotoStock — Inicio"><span class="phone-notch"></span><img src="assets/projects/motostock/home.jpg" alt="MotoStock — Inicio" loading="lazy"></button><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="2" aria-label="Ver captura: MotoStock — Historial de atenciones"><span class="phone-notch"></span><img src="assets/projects/motostock/historial.jpg" alt="MotoStock — Historial de atenciones" loading="lazy"></button><button class="gshot phone-shot" type="button" data-gallery="motostock" data-index="3" aria-label="Ver captura: MotoStock — Citas pendientes"><span class="phone-notch"></span><img src="assets/projects/motostock/citas.jpg" alt="MotoStock — Citas pendientes" loading="lazy"></button></div>
   <div class="project-main">
     <div class="case-kicker">PROBLEMA → SOLUCIÓN</div>
-    <h3>Robotech — Gestión comercial</h3>
-    <p class="case-intro">La propuesta busca ordenar la gestión de una empresa de robótica donde inventario, clientes, ventas, cotizaciones y pedidos necesitan estar conectados. El proyecto separa la lógica de negocio de la interfaz para construir una solución más mantenible y fácil de evolucionar.</p>
-    <div class="case-split"><div><div class="mini-title">Qué construí</div><p>Un backend REST para gestionar inventario, ventas, cotizaciones y clientes, acompañado de una interfaz web para operar el sistema.</p></div><div><div class="mini-title">Cómo lo resolví</div><p>Spring Boot + JPA/Hibernate + MySQL para persistencia y reglas del sistema. El frontend usa React + Vite, React Router, Axios y componentes de interacción para consumir la API.</p></div></div>
-    <div class="tech-row"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">JPA / Hibernate</span><span class="tech-tag">MySQL</span><span class="tech-tag">JUnit</span><span class="tech-tag">React</span><span class="tech-tag">Vite</span><span class="tech-tag">Axios</span><span class="tech-tag">React Router</span></div>
-    <ul class="project-list"><li>Inventario de componentes y kits</li><li>Ventas, cotizaciones y seguimiento</li><li>Gestión de clientes</li><li>Persistencia con JPA/Hibernate</li><li>Frontend responsive conectado a REST</li><li>Pruebas unitarias en backend</li></ul>
+    <h3>MotoStock — App Android Nativa para Taller</h3>
+    <p class="case-intro">Un taller de motos necesita controlar repuestos, servicios, vehículos y citas sin depender de procesos dispersos. La propuesta fue llevar esa operación a una aplicación Android centralizada, con persistencia local offline-first, acceso por roles y sincronización en la nube.</p>
+    <div class="case-split">
+      <div><div class="mini-title">Qué construí</div><p>Una app nativa para gestionar inventario, historial de servicios por placa y agenda de citas, con autenticación y persistencia.</p></div>
+      <div><div class="mini-title">Cómo lo resolví</div><p>Clean Architecture, Jetpack Compose, ViewModels/StateFlow, Room para persistencia local, Firestore para sincronización y Hilt para inyección de dependencias.</p></div>
+    </div>
+    <div class="tech-row"><span class="tech-tag">Kotlin</span><span class="tech-tag">Jetpack Compose</span><span class="tech-tag">Clean Architecture</span><span class="tech-tag">MVVM / StateFlow</span><span class="tech-tag">Hilt</span><span class="tech-tag">Room DB</span><span class="tech-tag">Retrofit</span><span class="tech-tag">Firebase</span></div>
+    <ul class="project-list">
+      <li>Roles CLIENTE / TRABAJADOR / ADMIN</li>
+      <li>Firebase Auth + Google Sign-In</li>
+      <li>FCM para notificaciones push automáticas</li>
+      <li>Room + Firestore para persistencia local y sincronización</li>
+      <li>Consulta de datos de vehículo vía API REST externa</li>
+      <li>Tests con JUnit + Mockito y patrón AAA</li>
+    </ul>
+
+    <div class="demo-info-pill">
+      <span>📱</span>
+      <span><strong>Aplicación Móvil:</strong> Desarrollada en Kotlin nativo con Jetpack Compose y arquitectura Offline-First.</span>
+    </div>
   </div>
-  <div class="project-footer repo-duo"><a href="https://github.com/JorgeRuiz20/BackendRobotech" target="_blank" rel="noreferrer" class="repo-link"><span>↗</span> Backend <small>BackendRobotech</small></a><a href="https://github.com/JorgeRuiz20/FrontendRobotech" target="_blank" rel="noreferrer" class="repo-link"><span>↗</span> Frontend <small>FrontendRobotech</small></a></div>
+  <div class="project-footer">
+    <div class="project-actions">
+      <a href="https://github.com/JorgeRuiz20/AppMotoStock" target="_blank" rel="noreferrer" class="repo-badge-link" style="padding:10px 18px;font-size:.84rem;background:rgba(91,140,255,.12);border-color:rgba(91,140,255,.35);color:#fff">
+        <span>↗</span> Ver Repositorio en GitHub <small style="margin-left:8px;color:#a3badf">AppMotoStock</small>
+      </a>
+    </div>
+  </div>
 </article>
 
 <article class="project-card reveal case-card" data-tilt>
-  <div class="project-top"><div class="project-index">04</div><div class="project-icon">✦</div><div class="project-type">Web · Spring Boot + HTML/CSS/JS</div></div>
+  <div class="project-top">
+    <div class="project-index">04</div>
+    <div class="project-icon">✦</div>
+    <div class="project-type">Full Stack · Spring Boot + JS</div>
+    <span class="live-badge">Live Demo</span>
+  </div>
   <div class="project-gallery browser-gallery" aria-label="Capturas del proyecto"><button class="gshot browser-shot" type="button" data-gallery="rinred" data-index="0" aria-label="Ver captura: RinRed — Landing"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/rinred/home.jpg" alt="RinRed — Landing" loading="lazy"></button><button class="gshot browser-shot" type="button" data-gallery="rinred" data-index="1" aria-label="Ver captura: RinRed — Formulario de solicitud de taxi"><span class="browser-chrome"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span></span><img src="assets/projects/rinred/solicitar.jpg" alt="RinRed — Formulario de solicitud de taxi" loading="lazy"></button></div>
   <div class="project-main">
     <div class="case-kicker">PROBLEMA → SOLUCIÓN</div>
-    <h3>RinRed — Reservas de taxi en Cusco</h3>
-    <p class="case-intro">La idea fue crear una experiencia sencilla para solicitar un taxi, consultar viajes en curso o finalizados y gestionar cancelaciones, enfocada en un servicio de transporte dentro de Cusco. El proyecto permitió practicar el flujo completo entre una interfaz web y una API propia.</p>
-    <div class="case-split"><div><div class="mini-title">Qué construí</div><p>Un frontend multipágina con Bootstrap para explorar el servicio, solicitar taxis, consultar viajes y revisar información del conductor.</p></div><div><div class="mini-title">Cómo lo resolví</div><p>Backend con Spring Boot 3.5.3, Java 21, Spring Data JPA y MySQL; frontend con HTML, CSS, JavaScript y Bootstrap, consumiendo la API y manteniendo datos de sesión con localStorage.</p></div></div>
-    <div class="tech-row"><span class="tech-tag">Java 21</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">Spring Data JPA</span><span class="tech-tag">MySQL</span><span class="tech-tag">Docker</span><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Bootstrap</span></div>
-    <ul class="project-list"><li>Solicitud de taxi</li><li>Consulta de viajes pendientes y finalizados</li><li>Cancelación de viajes</li><li>Consulta de información del conductor</li><li>Integración frontend ↔ API REST</li><li>Interfaz responsive para navegación web</li></ul>
+    <h3>RinRed — Reservas de Taxi en Cusco</h3>
+    <p class="case-intro">Experiencia digital sencilla para cotizar y solicitar un taxi, consultar viajes en curso o finalizados y gestionar cancelaciones para transporte dentro de Cusco. El proyecto implementa un flujo completo entre una interfaz web interactiva y una API REST robusta.</p>
+    <div class="case-split">
+      <div><div class="mini-title">Qué construí</div><p>Un frontend multipágina para explorar el servicio, solicitar taxis en tiempo real, consultar viajes y revisar detalles del conductor.</p></div>
+      <div><div class="mini-title">Cómo lo resolví</div><p>Backend con Spring Boot 3.5.3, Java 21, Spring Data JPA y MySQL en Render; frontend con HTML, CSS, JavaScript y Bootstrap.</p></div>
+    </div>
+    <div class="tech-row"><span class="tech-tag">Java 21</span><span class="tech-tag">Spring Boot 3</span><span class="tech-tag">Spring Data JPA</span><span class="tech-tag">MySQL</span><span class="tech-tag">Docker</span><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">Render</span></div>
+    <ul class="project-list">
+      <li>Solicitud de taxi en tiempo real</li>
+      <li>Consulta de viajes pendientes y finalizados</li>
+      <li>Cancelación y seguimiento de estado de viajes</li>
+      <li>Consulta de información y asignación del conductor</li>
+      <li>Integración frontend ↔ API REST en la nube</li>
+      <li>Interfaz responsive optimizada para web y móvil</li>
+    </ul>
+
+    <div class="demo-info-pill">
+      <span>🌐</span>
+      <span><strong>Acceso Público Inmediato:</strong> Aplicación web pública disponible para solicitar viajes y explorar funciones sin registro previo.</span>
+    </div>
   </div>
-  <div class="project-footer repo-duo"><a href="https://github.com/JorgeRuiz20/BackendRinRed" target="_blank" rel="noreferrer" class="repo-link"><span>↗</span> Backend <small>BackendRinRed</small></a><a href="https://github.com/JorgeRuiz20/FrontendRinRed" target="_blank" rel="noreferrer" class="repo-link"><span>↗</span> Frontend <small>FrontendRinRed</small></a></div>
+  <div class="project-footer">
+    <div class="project-actions">
+      <a href="https://frontendrinred.onrender.com" target="_blank" rel="noreferrer" class="btn-live">
+        <span class="live-pulse"></span> 🚀 Probar Demo en Vivo <span>↗</span>
+      </a>
+      <div class="repo-links-group">
+        <a href="https://github.com/JorgeRuiz20/BackendRinRed" target="_blank" rel="noreferrer" class="repo-badge-link">
+          <span>↗</span> Backend <small>BackendRinRed</small>
+        </a>
+        <a href="https://github.com/JorgeRuiz20/FrontendRinRed" target="_blank" rel="noreferrer" class="repo-badge-link">
+          <span>↗</span> Frontend <small>FrontendRinRed</small>
+        </a>
+      </div>
+    </div>
+  </div>
 </article>
 
 </div></div></section>
@@ -203,4 +397,39 @@ const GALLERIES = {"motostock": {"type": "phone", "shots": [["assets/projects/mo
     if(e.key === 'ArrowRight') step(1);
   });
 })();
+
+function copyCred(text, btn) {
+  function showCopied(targetBtn) {
+    const original = targetBtn.textContent;
+    targetBtn.textContent = '✓ Copiado';
+    targetBtn.classList.add('copied');
+    setTimeout(() => {
+      targetBtn.textContent = original;
+      targetBtn.classList.remove('copied');
+    }, 2000);
+  }
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => showCopied(btn)).catch(() => {
+      fallbackCopy(text, btn, showCopied);
+    });
+  } else {
+    fallbackCopy(text, btn, showCopied);
+  }
+}
+
+function fallbackCopy(text, btn, callback) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    callback(btn);
+  } catch(e) {}
+  document.body.removeChild(ta);
+}
 </script></body></html>
